@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <org.opencv.android.JavaCameraView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/HelloOpenCvView"
+        android:layout_weight="1" />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/infoButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@null"
+        android:src="@drawable/info_button_smallerer"/>
+    <Switch
+        android:id="@+id/mySwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp" />
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight= "50dp"
+        android:layout_marginLeft= "50dp"
+        android:layout_marginTop= "25dp"
+        android:textSize="20sp"
+        android:maxLines = "9"
+        android:scrollbars = "vertical"
+        android:visibility="invisible"
+        android:autoLink="web"/>
+    <!--
+      <TextView
+        android:id="@+id/text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/infoButton"
+        android:layout_toRightOf="@id/mySwitch"
+        android:layout_toStartOf="@id/infoButton"
+        android:layout_toEndOf="@id/mySwitch"
+        android:layout_marginTop= "20dp"
+        android:textSize="20sp"
+        android:maxLines = "8"
+        android:scrollbars = "vertical"
+        android:visibility="invisible"/>
+      -->
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:id="@+id/seekBarWindowSize"
+        android:max="3"
+        android:progress="1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
