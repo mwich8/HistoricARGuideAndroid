@@ -11,6 +11,7 @@ import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -22,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -58,17 +60,8 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
     private TextView textView;
     private boolean textViewVisible = false;
 
-    // private int activeCanny = 2;
-    private int windowSize = 4;     // 1 (progress) + 3 (fixed int)
-
     private int cameraViewWidth;
     private int cameraViewHeight;
-
-    private int currentInnerWindowWidth;
-    private int currentInnerWindowHeight;
-
-    private int displayWidth;
-    private int displayHeight;
 
     private int leftBorderSize;
     private int topBorderSize;
@@ -84,11 +77,9 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
 
     // Declaring native functions
     public native void setupDetection(int innerWidth, int innerHeight, int frameWidth, int frameHeight, long matAddrARImg);
-    // public native void updateSettings(int width, int height);
     public native void setSwitchState(boolean switchState);
     public native void nativeOpticalDetectionDebug(long matAddrInner, long matAddrRgba, float fps);
-    public native void nativeOpticalDetection(long matAddrRgba, float fps);
-    // public native void nativeSetTouchPos(int xCoord, int yCoord);
+    public native void nativeOpticalDetection(long matAddrInner, long matAddrRgba, float fps);
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -123,32 +114,10 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.i(TAG, "called onOptionsItemSelected; selected item: " + item);
         if (item == mItemPreviewNativeOpticalDetectionDebug) {
-            // TODO: Not needed anymore
-            /*
-            float borderStrength = 1f / (float)windowSize;
-
-            int left = (int)(cameraViewWidth * borderStrength);
-            int top = (int)(cameraViewHeight * borderStrength);
-
-            leftBorderSize = left;
-            topBorderSize = top;
-            */
-            // setupDetection(cameraViewWidth - (2 * left), cameraViewHeight - (2 * top), arImage.getNativeObjAddr());
             setupDetection((int)innerRectSideLength, (int)innerRectSideLength, cameraViewWidth, cameraViewHeight, arImage.getNativeObjAddr());
             viewMode = VIEW_MODE_NATIVEOPTICALDETECTIONDEBUG;
         }
         else if (item == mItemPreviewNativeOpticalDetection) {
-            // TODO: Not needed anymore
-            /*
-            float borderStrength = 1f / (float)windowSize;
-
-            int left = (int)(cameraViewWidth * borderStrength);
-            int top = (int)(cameraViewHeight * borderStrength);
-
-            leftBorderSize = left;
-            topBorderSize = top;
-            */
-            // setupDetection(cameraViewWidth - (2 * left), cameraViewHeight - (2 * top), arImage.getNativeObjAddr());
             setupDetection((int)innerRectSideLength, (int)innerRectSideLength, cameraViewWidth, cameraViewHeight, arImage.getNativeObjAddr());
             viewMode = VIEW_MODE_NATIVEOPTICALDETECTION;
         }
@@ -233,71 +202,13 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
                 changeARImage();
                 updateInfoText();
 
-                // setupDetection(cameraViewWidth - (2 * leftBorderSize), cameraViewHeight - (2 * topBorderSize), arImage.getNativeObjAddr());
                 setupDetection((int)innerRectSideLength, (int)innerRectSideLength, cameraViewWidth, cameraViewHeight, arImage.getNativeObjAddr());
             }
         });
-        // Touch event
-        // TODO: Not needed anymore with new approach
-
-        /*
-        final View touchView = findViewById(R.id.HelloOpenCvView);
-        touchView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                float tempLeft = (displayWidth - currentInnerWindowWidth)/2;
-                float tempTop = (int)(((displayHeight - currentInnerWindowHeight)/2)*0.75f);
-                if (event.getX() > tempLeft && event.getX() < tempLeft + currentInnerWindowWidth) {
-                    if (event.getY() > tempTop && event.getY() < tempTop + currentInnerWindowHeight) {
-                        if (event.getAction() == MotionEvent.ACTION_UP) {
-                            // Calc relative coordinates
-                            int relativePixelPosX = (int)(event.getX() - tempLeft);
-                            int relativePixelPosY =  (int)(event.getY() - tempTop);
-                            nativeSetTouchPos(relativePixelPosX, relativePixelPosY);
-                        }
-                    }
-                }
-                return true;
-            }
-        });
-        */
-        // Get Display Resolution
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        displayWidth = metrics.widthPixels;
-        displayHeight = metrics.heightPixels;
-
-        // Manage seekbar for changing inner size
-        // TODO: Not needed anymore
-        /*
-        final SeekBar seekBarWindowSize;
-        seekBarWindowSize = (SeekBar) findViewById(R.id.seekBarWindowSize);
-        seekBarWindowSize.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int thresholdValue, boolean fromUser) {
-                windowSize = thresholdValue + 3;
-
-                float borderStrength = 1f / (float)windowSize;
-
-                int left = (int)(cameraViewWidth * borderStrength);
-                int top = (int)(cameraViewHeight * borderStrength);
-
-                leftBorderSize = left;
-                topBorderSize = top;
-
-                currentInnerWindowWidth = cameraViewWidth - (2 * left);
-                currentInnerWindowHeight = cameraViewHeight - (2 * top);
-
-                updateSettings(currentInnerWindowWidth, currentInnerWindowHeight);
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
-        });
-        */
+        // Create Toast to advice user
+        Toast toast = Toast.makeText(this, "Focus the middle arch", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 
     @Override
@@ -306,7 +217,7 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
         super.onResume();
         OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_1_0, this, mLoaderCallback);
         // Pre-Select item for debugging/developing
-        onOptionsItemSelected(mItemPreviewNativeOpticalDetectionDebug);
+        onOptionsItemSelected(mItemPreviewNativeOpticalDetection);
     }
 
     @Override
@@ -324,20 +235,7 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
     }
 
     public void onCameraViewStarted(int width, int height) {
-        final Mat mRgba = new Mat();
-
         // Setup native part
-        // TODO: Not needed anymore
-        /*
-        float borderStrength = 1f / (float)windowSize;
-
-        int left = (int)(width * borderStrength);
-        int top = (int)(height * borderStrength);
-
-        leftBorderSize = left;
-        topBorderSize = top;
-        */
-
         sizeOfInnerRect = 0.15f;
         innerRectSideLength = sizeOfInnerRect * width;
 
@@ -347,12 +245,8 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
         cameraViewHeight = height;
         cameraViewWidth = width;
 
-        currentInnerWindowWidth = (int)innerRectSideLength;
-        currentInnerWindowHeight = (int)innerRectSideLength;
-
         changeARImage();
 
-        // setupDetection(cameraViewWidth - (2 * leftBorderSize), cameraViewHeight - (2 * topBorderSize), arImage.getNativeObjAddr());
         setupDetection((int)innerRectSideLength, (int)innerRectSideLength, cameraViewWidth, cameraViewHeight, arImage.getNativeObjAddr());
     }
 
@@ -375,56 +269,28 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
         // Explicitly deallocate Mats
         if (mRgba != null)
             mRgba.release();
-
         mRgba = null;
     }
 
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
         Mat rgba = inputFrame.rgba();
-        Size sizeRgba = rgba.size();
 
-        Mat rgb;
         Mat rgbaInnerWindow;
 
-        // int cols = (int) sizeRgba.width;
-        // int rows = (int) sizeRgba.height;
-
-        // TODO: Not needed anymore
-        // float borderStrength = 1f / (float)windowSize;
-
-        // sizeOfInnerRect = 0.15f;
-        // innerRectSideLength = sizeOfInnerRect * cols;
-
-        // int left = (int)(cols * borderStrength);
-        // int top = (int)(rows * borderStrength);
-        // int left = (int)((cols/2) - (innerRectSideLength/2));
-        // int top = (int)((rows/2) - (innerRectSideLength/2));
-
-        // leftBorderSize = left;
-        // topBorderSize = top;
-
-        // currentInnerWindowWidth = cameraViewWidth - (2 * left);
-        // currentInnerWindowHeight = cameraViewHeight - (2 * top);
-        // currentInnerWindowWidth = (int)innerRectSideLength;
-        // currentInnerWindowHeight = (int)innerRectSideLength;
+        long timeDiff = SystemClock.elapsedRealtime() - lastTime;
+        float fps = 1000.0f/timeDiff;
 
         switch (MainActivity.viewMode) {
             case MainActivity.VIEW_MODE_NATIVEOPTICALDETECTIONDEBUG:
                 rgbaInnerWindow = rgba.submat(topBorderSize, cameraViewHeight - topBorderSize, leftBorderSize, cameraViewWidth - leftBorderSize);
-                rgb = rgba.submat(0,cameraViewHeight,0,cameraViewWidth);
-                long timeDiff = SystemClock.elapsedRealtime() - lastTime;
-                float fps = 1000.0f/timeDiff;
                 lastTime = SystemClock.elapsedRealtime();
-                nativeOpticalDetectionDebug(rgbaInnerWindow.getNativeObjAddr(), rgb.getNativeObjAddr(), fps);
-                rgb.release();
+                nativeOpticalDetectionDebug(rgbaInnerWindow.getNativeObjAddr(), rgba.getNativeObjAddr(), fps);
                 rgbaInnerWindow.release();
                 break;
             case MainActivity.VIEW_MODE_NATIVEOPTICALDETECTION:
                 rgbaInnerWindow = rgba.submat(topBorderSize, cameraViewHeight - topBorderSize, leftBorderSize, cameraViewWidth - leftBorderSize);
-                long timeDiffRelease = SystemClock.elapsedRealtime() - lastTime;
-                float fpsRelease = 1000.0f/timeDiffRelease;
                 lastTime = SystemClock.elapsedRealtime();
-                nativeOpticalDetection(rgbaInnerWindow.getNativeObjAddr(), fpsRelease);
+                nativeOpticalDetection(rgbaInnerWindow.getNativeObjAddr(), rgba.getNativeObjAddr(), fps);
                 rgbaInnerWindow.release();
                 break;
         }
