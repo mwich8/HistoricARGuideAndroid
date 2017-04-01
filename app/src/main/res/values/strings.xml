@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">HistoricARGuide</string>
+    <string name="augmentMyView">Augment My View</string>
+    <string name="showMap">Historic Map</string>
+    <string name="listAllLocations">List All Locations</string>
+    <string name="locations">Locations</string>
 </resources>

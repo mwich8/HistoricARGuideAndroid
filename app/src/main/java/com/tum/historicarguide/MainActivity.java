@@ -1,5 +1,6 @@
 package com.tum.historicarguide;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -120,6 +121,9 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
         else if (item == mItemPreviewNativeOpticalDetection) {
             setupDetection((int)innerRectSideLength, (int)innerRectSideLength, cameraViewWidth, cameraViewHeight, arImage.getNativeObjAddr());
             viewMode = VIEW_MODE_NATIVEOPTICALDETECTION;
+        } else if (item.getItemId() == android.R.id.home) {
+            // Finish activity and navigate back to the main menu
+            this.finish();
         }
         return true;
     }
@@ -157,6 +161,9 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
     public void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "called onCreate");
         super.onCreate(savedInstanceState);
+        // Enable the back button on the action bar
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);

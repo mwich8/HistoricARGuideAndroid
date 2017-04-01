@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- BUTTON IS PRESSED -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- SHADOW LAYER -->
+            <item android:left="4dp" android:top="4dp">
+                <shape>
+                    <gradient android:angle="135"
+                        android:endColor="#313131" android:startColor="#c0313131" />
+                    <corners android:radius="30dip"/>
+                </shape>
+            </item>
+            <!-- CONTENT LAYER -->
+            <item android:bottom="3dp" android:right="1dp">
+                <shape>
+                    <solid android:color="#ff468966" />
+                    <corners android:radius="30dip"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <!-- BUTTON LAYOUT -->
+    <item>
+        <layer-list>
+            <!-- SHADOW LAYER -->
+            <item android:left="4dp" android:top="4dp">
+                <shape>
+                    <gradient android:angle="135"
+                        android:endColor="#313131" android:startColor="#c0313131" />
+                    <corners android:radius="30dip"/>
+                </shape>
+            </item>
+            <!-- CONTENT LAYER -->
+            <item android:bottom="3dp" android:right="1dp">
+                <shape>
+                    <gradient android:angle="270"
+                        android:endColor="#FFB03B" android:startColor="#FFF0A5" />
+                    <corners android:radius="30dip"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>
