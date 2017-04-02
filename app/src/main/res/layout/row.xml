@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/rowImageView"
+        android:src="@drawable/historicarguideicon"
+        android:padding="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:text="Location Name"
+        android:id="@+id/locationNameView"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/rowImageView"
+        android:paddingLeft="30dp"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationDetailView"
+        android:layout_toRightOf="@id/rowImageView"
+        android:layout_below="@id/locationNameView"
+        android:text="Detail Text"
+        android:paddingLeft="30dp"/>
+
+</RelativeLayout>

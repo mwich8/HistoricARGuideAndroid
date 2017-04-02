@@ -34,16 +34,12 @@ public class MainMenuActivity extends Activity {
         Log.d(TAG, "Die Datenquelle wird geöffnet.");
         dataSource.open();
 
-        // Location location = new Location(1,"Siegestor", 20.0f, 20.0f, 45.0f, 120.0f, 40.0f, 150.0f, 150.0f, false);
-        Location location = dataSource.createLocation("Feldherrnhalle", 40.0f, 40.0f, 135.0f, 140.0f, 60.0f, 120.0f, 130.0f, true);
-        Log.d(TAG, "Es wurde der folgende Eintrag in die Datenbank geschrieben:");
-        Log.d(TAG, location.toString());
-
-        Log.d(TAG, "Folgende Einträge sind in der Datenbank vorhanden:");
-        showAllListEntries();
+        Log.d(TAG, "Die Datenquelle wird gefüllt.");
+        fillDatabase();
 
         Log.d(TAG, "Die Datenquelle wird geschlossen.");
         dataSource.close();
+
 
         // Register Button to change to the main activity
         mainActivityButton = (Button) findViewById(R.id.augmentViewButton);
@@ -68,18 +64,16 @@ public class MainMenuActivity extends Activity {
         });
     }
 
-    private void showAllListEntries () {
+    // Fills the database if it's still empty
+    private void fillDatabase() {
         List<Location> locationList = dataSource.getAllLocations();
-
-        /*
-        ArrayAdapter<Location> locationArrayAdapter = new ArrayAdapter<> (
-                this,
-                android.R.layout.simple_list_item_multiple_choice,
-                shoppingMemoList);
-        */
-
-        // Currently no listview available ==> Do this in other activity
-        // ListView locationsListView = (ListView) findViewById(R.id.listview_locations);
-        // locationsListView.setAdapter(locationArrayAdapter);
+        if (locationList.isEmpty()){
+            Location locationSiegestor = dataSource.createLocation("Siegestor", 20.0f, 20.0f, 45.0f, 120.0f, 40.0f, 150.0f, 150.0f, false);
+            Log.d(TAG, "Es wurde der folgende Eintrag in die Datenbank geschrieben:");
+            Log.d(TAG, locationSiegestor.toString());
+            Location locationFeldherrnhalle = dataSource.createLocation("Feldherrnhalle", 40.0f, 40.0f, 135.0f, 140.0f, 60.0f, 120.0f, 130.0f, true);
+            Log.d(TAG, "Es wurde der folgende Eintrag in die Datenbank geschrieben:");
+            Log.d(TAG, locationFeldherrnhalle.toString());
+        }
     }
 }
