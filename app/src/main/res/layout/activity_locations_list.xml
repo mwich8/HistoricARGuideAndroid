@@ -3,18 +3,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="20">
+    android:weightSum="20"
+    android:background="#FFF0A5">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
         android:text="@string/locations"
-        android:textColor="@android:color/white"
-        android:textStyle="bold"
-        android:textAlignment="center"
+        android:textColor="#FFF0A5"
+        android:textStyle="italic"
+        android:gravity="center"
         android:textSize="50sp"
-        android:background="@android:color/background_dark"/>
+        android:background="#8E2800"/>
 
     <ListView
         android:id="@+id/locationsListView"

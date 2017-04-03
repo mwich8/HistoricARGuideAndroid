@@ -4,4 +4,5 @@
     <string name="showMap">Historic Map</string>
     <string name="listAllLocations">List All Locations</string>
     <string name="locations">Locations</string>
+    <string name="locationName">LocationName</string>
 </resources>

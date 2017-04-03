@@ -1,10 +1,12 @@
 package com.tum.historicarguide;
 
+import java.io.Serializable;
+
 /**
  * Created by Mati on 01.04.2017.
  */
 
-public class Location {
+public class Location implements Serializable {
 
     private long id;
     private String name;

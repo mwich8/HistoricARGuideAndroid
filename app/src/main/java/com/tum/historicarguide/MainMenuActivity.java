@@ -2,14 +2,12 @@ package com.tum.historicarguide;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+
 import java.util.List;
 
 /**
@@ -28,7 +26,9 @@ public class MainMenuActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_menu);
+        setContentView(R.layout.activity_main_menu);
+        // Fix Screen Orientation
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         dataSource = new LocationDataSource(this);
         Log.d(TAG, "Die Datenquelle wird geöffnet.");

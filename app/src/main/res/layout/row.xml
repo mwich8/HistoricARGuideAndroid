@@ -4,30 +4,42 @@
     android:layout_height="wrap_content">
 
     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:src="@drawable/row_background"
+        android:scaleType="fitXY"/>
+
+    <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:id="@+id/rowImageView"
         android:src="@drawable/historicarguideicon"
         android:padding="5dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold"
-        android:text="Location Name"
+        android:text="@string/locationName"
+        android:textColor="#8E2800"
         android:id="@+id/locationNameView"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/rowImageView"
         android:paddingLeft="30dp"
+        android:paddingStart="30dp"
+        android:paddingRight="125dp"
+        android:paddingEnd="125dp"
         android:layout_marginTop="15dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/locationDetailView"
+        android:textColor="#8E2800"
         android:layout_toRightOf="@id/rowImageView"
         android:layout_below="@id/locationNameView"
         android:text="Detail Text"

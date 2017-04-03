@@ -200,12 +200,11 @@ public class MainActivity extends Activity implements CvCameraViewListener2 {
                                          boolean isChecked) {
 
                 if(isChecked){
-                    setSwitchState(isChecked);
                     arImageName = AR_IMG_NAME_SIEGESTOR;
                 }else{
-                    setSwitchState(isChecked);
                     arImageName = AR_IMG_NAME_FELDHERRNHALLE;
                 }
+                setSwitchState(isChecked);
                 changeARImage();
                 updateInfoText();
 

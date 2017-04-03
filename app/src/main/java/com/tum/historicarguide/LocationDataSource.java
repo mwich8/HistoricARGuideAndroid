@@ -52,12 +52,12 @@ public class LocationDataSource {
         ContentValues values = new ContentValues();
         values.put(LocationDBHelper.COLUMN_NAME, name);
         values.put(LocationDBHelper.COLUMN_LATITUDE, latitude);
-        values.put(LocationDBHelper.COLUMN_LONGITUDE, latitude);
-        values.put(LocationDBHelper.COLUMN_ORIENTATION, latitude);
-        values.put(LocationDBHelper.COLUMN_MIDDLEARCHWIDTH, latitude);
-        values.put(LocationDBHelper.COLUMN_MIDDLEARCHHEIGHT, latitude);
-        values.put(LocationDBHelper.COLUMN_ZENITHX, latitude);
-        values.put(LocationDBHelper.COLUMN_ZENITHY, latitude);
+        values.put(LocationDBHelper.COLUMN_LONGITUDE, longitude);
+        values.put(LocationDBHelper.COLUMN_ORIENTATION, orientation);
+        values.put(LocationDBHelper.COLUMN_MIDDLEARCHWIDTH, middleArchWidth);
+        values.put(LocationDBHelper.COLUMN_MIDDLEARCHHEIGHT, middleArchHeight);
+        values.put(LocationDBHelper.COLUMN_ZENITHX, zenithX);
+        values.put(LocationDBHelper.COLUMN_ZENITHY, zenithY);
         if(gateClosed) {
             values.put(LocationDBHelper.COLUMN_GATECLOSED, 1);
         } else {
