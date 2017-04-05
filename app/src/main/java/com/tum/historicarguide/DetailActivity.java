@@ -47,7 +47,7 @@ public class DetailActivity extends Activity {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        Location retrievedLocation = (Location) getIntent().getSerializableExtra("Location");
+        Location retrievedLocation = (Location) getIntent().getExtras().getParcelable("Location");
 
         if (locationsHeaderView != null) {
             locationsHeaderView.setText(retrievedLocation.getName());

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/main_menu_background">
+    android:background="@drawable/main_menu_background2">
 
     <ImageView
         android:id="@+id/mainMenuHeaderImage"
@@ -20,7 +20,7 @@
         android:text="@string/augmentMyView"
         android:typeface="serif"
         android:textSize="25sp"
-        android:textColor="#8E2800"
+        android:textColor="@color/colorPrimaryDark"
         android:background="@drawable/button_rounded_corners"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -34,7 +34,7 @@
         android:text="@string/showMap"
         android:typeface="serif"
         android:textSize="25sp"
-        android:textColor="#8E2800"
+        android:textColor="@color/colorPrimaryDark"
         android:background="@drawable/button_rounded_corners"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,7 +48,7 @@
         android:text="@string/listAllLocations"
         android:typeface="serif"
         android:textSize="25sp"
-        android:textColor="#8E2800"
+        android:textColor="@color/colorPrimaryDark"
         android:background="@drawable/button_rounded_corners"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

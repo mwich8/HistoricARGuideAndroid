@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Mati on 01.04.2017.
  */
 
-public class LocationDataSource {
+class LocationDataSource {
 
     private static final String TAG = LocationDataSource.class.getSimpleName();
 
@@ -32,23 +32,23 @@ public class LocationDataSource {
             LocationDBHelper.COLUMN_GATECLOSED,
     };
 
-    public LocationDataSource(Context context) {
+    LocationDataSource(Context context) {
         Log.d(TAG, "Unsere DataSource erzeugt jetzt den dbHelper.");
         dbHelper = new LocationDBHelper(context);
     }
 
-    public void open() {
+    void open() {
         Log.d(TAG, "Eine Referenz auf die Datenbank wird jetzt angefragt.");
         database = dbHelper.getWritableDatabase();
         Log.d(TAG, "Datenbank-Referenz erhalten. Pfad zur Datenbank: " + database.getPath());
     }
 
-    public void close() {
+    void close() {
         dbHelper.close();
         Log.d(TAG, "Datenbank mit Hilfe des DbHelpers geschlossen.");
     }
 
-    public Location createLocation(String name, float latitude, float longitude, float orientation, float middleArchWidth, float middleArchHeight, float zenithX, float zenithY, boolean gateClosed) {
+    Location createLocation(String name, float latitude, float longitude, float orientation, float middleArchWidth, float middleArchHeight, float zenithX, float zenithY, boolean gateClosed) {
         ContentValues values = new ContentValues();
         values.put(LocationDBHelper.COLUMN_NAME, name);
         values.put(LocationDBHelper.COLUMN_LATITUDE, latitude);
@@ -112,7 +112,7 @@ public class LocationDataSource {
         return location;
     }
 
-    public List<Location> getAllLocations() {
+    List<Location> getAllLocations() {
         List<Location> locationList = new ArrayList<>();
 
         Cursor cursor = database.query(LocationDBHelper.TABLE_LOCATION,

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_menu_background2"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/augmentViewImageButton"
+        android:padding="2dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/main_activity_button"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/augmentMyView"
+        android:layout_alignTop="@id/augmentViewImageButton"
+        android:layout_alignBottom="@id/augmentViewImageButton"
+        android:gravity="center"
+        android:paddingTop="75dp"
+        android:textColor="@android:color/white"
+        android:textSize="35sp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="175dp"
+        android:baselineAligned="true"
+        android:orientation="horizontal"
+        android:layout_below="@id/augmentViewImageButton">
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/mapImageButton"
+                android:background="@drawable/button_background"
+                android:layout_margin="8dp"
+                android:src="@drawable/map_with_icons"
+                android:scaleType="centerInside"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/locateHistoricPlaces"
+                android:gravity="center_horizontal"
+                android:paddingTop="0.85in"
+                android:textColor="#252525"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dip"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/listAllLocationsImageButton"
+                android:background="@drawable/button_background"
+                android:layout_margin="8dp"
+                android:src="@drawable/list_icon"
+                android:scaleType="centerInside" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/listAllLocations"
+                android:gravity="center_horizontal"
+                android:paddingTop="0.85in"
+                android:textColor="#252525"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

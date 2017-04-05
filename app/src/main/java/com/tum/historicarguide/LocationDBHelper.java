@@ -9,28 +9,28 @@ import android.util.Log;
  * Created by Mati on 01.04.2017.
  */
 
-public class LocationDBHelper extends SQLiteOpenHelper {
+class LocationDBHelper extends SQLiteOpenHelper {
 
     private static final String TAG = LocationDBHelper.class.getSimpleName();
 
-    public static final String DB_NAME = "location.db";
-    public static final int DB_VERSION = 1;
+    private static final String DB_NAME = "location.db";
+    private static final int DB_VERSION = 1;
 
     // Change name to "munich"
-    public static final String TABLE_LOCATION = "location";
+    static final String TABLE_LOCATION = "location";
 
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_NAME = "name";
-    public static final String COLUMN_LATITUDE = "latitude";
-    public static final String COLUMN_LONGITUDE = "longitude";
-    public static final String COLUMN_ORIENTATION = "orientation";
-    public static final String COLUMN_MIDDLEARCHWIDTH = "middlearchwidth";
-    public static final String COLUMN_MIDDLEARCHHEIGHT = "middlearchheight";
-    public static final String COLUMN_ZENITHX = "zenithx";
-    public static final String COLUMN_ZENITHY = "zenithy";
-    public static final String COLUMN_GATECLOSED = "gateclosed";
+    static final String COLUMN_ID = "_id";
+    static final String COLUMN_NAME = "name";
+    static final String COLUMN_LATITUDE = "latitude";
+    static final String COLUMN_LONGITUDE = "longitude";
+    static final String COLUMN_ORIENTATION = "orientation";
+    static final String COLUMN_MIDDLEARCHWIDTH = "middlearchwidth";
+    static final String COLUMN_MIDDLEARCHHEIGHT = "middlearchheight";
+    static final String COLUMN_ZENITHX = "zenithx";
+    static final String COLUMN_ZENITHY = "zenithy";
+    static final String COLUMN_GATECLOSED = "gateclosed";
 
-    public static final String SQL_CREATE =
+    private static final String SQL_CREATE =
             "CREATE TABLE " + TABLE_LOCATION +
                     "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_NAME + " TEXT NOT NULL, " +
@@ -43,7 +43,7 @@ public class LocationDBHelper extends SQLiteOpenHelper {
                     COLUMN_ZENITHY + " REAL NOT NULL, " +
                     COLUMN_GATECLOSED + " INTEGER NOT NULL);";
 
-    public LocationDBHelper(Context context) {
+    LocationDBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         Log.d(TAG, "DbHelper hat die Datenbank: " + getDatabaseName() + " erzeugt.");
     }
